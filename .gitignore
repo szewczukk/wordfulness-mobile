@@ -11,3 +11,9 @@ web-build/
 
 # macOS
 .DS_Store
+
+.expo-shared
+.vscode
+yarn.lock
+.expo
+node_modules

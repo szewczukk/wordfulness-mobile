@@ -3,16 +3,9 @@ import { Text, View, Button } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
+import { StackParamsList } from '../../navigation/AppNavigation';
 
-type RootStackParamList = {
-	Home: undefined;
-	Learn: undefined;
-};
-
-type LearnScreenNavigationProp = StackNavigationProp<
-	RootStackParamList,
-	'Learn'
->;
+type LearnScreenNavigationProp = StackNavigationProp<StackParamsList, 'Learn'>;
 
 type Props = {
 	navigation: LearnScreenNavigationProp;

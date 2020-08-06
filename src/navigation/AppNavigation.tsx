@@ -4,7 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Learn from '../screens/Learn';
 
-const Stack = createStackNavigator();
+export type StackParamsList = {
+	Home: undefined;
+	Learn: undefined;
+};
+
+const Stack = createStackNavigator<StackParamsList>();
 
 export default () => (
 	<Stack.Navigator>

@@ -6,10 +6,8 @@ import styles from './styles';
 import * as routes from '../../constans/routes';
 import { StackParamsList } from '../../navigation/AppNavigation';
 
-type LearnScreenNavigationProp = StackNavigationProp<StackParamsList>;
-
 type Props = {
-	navigation: LearnScreenNavigationProp;
+	navigation: StackNavigationProp<StackParamsList>;
 };
 
 export default (props: Props) => {

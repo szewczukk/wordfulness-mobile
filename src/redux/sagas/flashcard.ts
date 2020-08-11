@@ -15,9 +15,7 @@ function* fetchGetAllFlashCards() {
 
 		yield put(actions.getAllFlashCardsSuccess(result));
 	} catch (e) {
-		yield put(
-			actions.getAllFlashCardsError({ stringified: JSON.stringify(e) }),
-		);
+		yield put(actions.getAllFlashCardsError(JSON.stringify(e)));
 	}
 }
 
@@ -42,9 +40,7 @@ function* fetchCreateFlashCard(action: Action) {
 
 		yield call(fetchGetAllFlashCards);
 	} catch (e) {
-		yield put(
-			actions.getAllFlashCardsError({ stringified: JSON.stringify(e) }),
-		);
+		yield put(actions.createFlashCardsError(JSON.stringify(e)));
 	}
 }
 

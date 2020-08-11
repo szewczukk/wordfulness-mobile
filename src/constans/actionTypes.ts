@@ -4,3 +4,4 @@ export const createFlashCardRequestType = 'CREATE_FLASHCARD_REQUEST';
 export const getAllFlashCardsSuccessType = 'ALL_FLASHCARD_SUCCESS';
 
 export const getAllFlashCardsErrorType = 'ALL_FLASHCARD_ERROR';
+export const createFlashCardErrorType = 'CREATE_FLASHCARD_ERROR';

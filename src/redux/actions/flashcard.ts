@@ -18,3 +18,8 @@ export const getAllFlashCardsError = (payload: any) => ({
 	type: actionTypes.getAllFlashCardsErrorType,
 	payload,
 });
+
+export const createFlashCardsError = (payload: any) => ({
+	type: actionTypes.createFlashCardErrorType,
+	payload,
+});

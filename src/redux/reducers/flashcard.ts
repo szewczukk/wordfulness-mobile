@@ -2,9 +2,8 @@ import * as actionTypes from '../../constans/actionTypes';
 
 const initialState = {
 	flashCards: [],
-	error: {
-		stringified: '',
-	},
+	getAllErrors: '',
+	createErrors: '',
 };
 
 const reducer = (
@@ -17,7 +16,9 @@ const reducer = (
 		case actionTypes.getAllFlashCardsSuccessType:
 			return { ...state, flashCards: payload };
 		case actionTypes.getAllFlashCardsErrorType:
-			return { ...state, error: payload };
+			return { ...state, getAllErrors: payload };
+		case actionTypes.createFlashCardErrorType:
+			return { ...state, createErrors: payload };
 		default:
 			return state;
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { bindActionCreators, Dispatch, AnyAction } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, TextInput } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
@@ -31,7 +31,15 @@ type Props = NavigationProps &
 	ReturnType<typeof mapStateToProps> &
 	ReturnType<typeof mapDispatchToProps>;
 
-class HomeComponent extends Component<Props> {
+type State = {
+	isAddingMode: boolean;
+};
+
+class HomeComponent extends Component<Props, State> {
+	state = {
+		isAddingMode: false,
+	};
+
 	componentDidMount() {
 		this.props.getAllFlashCardsRequest();
 	}
@@ -40,6 +48,14 @@ class HomeComponent extends Component<Props> {
 		const { navigation } = this.props;
 
 		navigation.navigate(routes.LEARN);
+	};
+
+	handleAddingMode = () => {
+		this.setState((prevState) => ({ isAddingMode: !prevState.isAddingMode }));
+	};
+
+	handleNewFlashCard = () => {
+		this.setState({ isAddingMode: false });
 	};
 
 	renderFlashCard = ({ item }: { item: FlashCard }) => {
@@ -54,6 +70,8 @@ class HomeComponent extends Component<Props> {
 
 	render() {
 		const { flashCards } = this.props;
+		const { isAddingMode } = this.state;
+
 		return (
 			<View style={styles.container}>
 				<FlatList
@@ -63,7 +81,18 @@ class HomeComponent extends Component<Props> {
 					contentContainerStyle={styles.flashCardContainer}
 				/>
 
-				<Button onPress={this.handleButtonPress} title={'Take me learn'} />
+				{isAddingMode && (
+					<View style={styles.inputsContainer}>
+						<TextInput placeholder="front page" style={styles.textInput} />
+						<TextInput placeholder="back page" style={styles.textInput} />
+						<Button onPress={this.handleNewFlashCard} title="Ok" />
+					</View>
+				)}
+
+				<View style={styles.buttonsContainer}>
+					<Button onPress={this.handleButtonPress} title={'Take me learn'} />
+					<Button onPress={this.handleAddingMode} title={'Add'} />
+				</View>
 			</View>
 		);
 	}

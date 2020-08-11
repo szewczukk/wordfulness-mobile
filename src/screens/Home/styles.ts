@@ -16,4 +16,14 @@ export default StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	inputsContainer: {
+		flexDirection: 'row',
+	},
+	buttonsContainer: {
+		flexDirection: 'row',
+	},
+	textInput: {
+		width: '30%',
+		padding: 8,
+	},
 });

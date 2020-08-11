@@ -8,7 +8,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 	flashCardContainer: {
-		width: '30%',
+		width: '50%',
 	},
 	flashCardRow: {
 		width: '100%',

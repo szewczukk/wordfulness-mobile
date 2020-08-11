@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput, RefreshControl } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
 import { AppState, FlashCard } from '../../constans/types';
 import * as routes from '../../constans/routes';
-import { getAllFlashCardsRequest } from '../../redux/actions/flashcard';
+import {
+	getAllFlashCardsRequest,
+	createFlashCardRequest,
+} from '../../redux/actions/flashcard';
 import { StackParamsList } from '../../navigation/AppNavigation';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -23,6 +26,7 @@ const mapDispatchToProps = (dispatch: Dispatch) =>
 	bindActionCreators(
 		{
 			getAllFlashCardsRequest,
+			createFlashCardRequest,
 		},
 		dispatch,
 	);
@@ -33,11 +37,15 @@ type Props = NavigationProps &
 
 type State = {
 	isAddingMode: boolean;
+	frontpage: string;
+	backpage: string;
 };
 
 class HomeComponent extends Component<Props, State> {
 	state = {
 		isAddingMode: false,
+		frontpage: '',
+		backpage: '',
 	};
 
 	componentDidMount() {
@@ -55,14 +63,18 @@ class HomeComponent extends Component<Props, State> {
 	};
 
 	handleNewFlashCard = () => {
-		this.setState({ isAddingMode: false });
+		const { frontpage, backpage } = this.state;
+
+		if (frontpage !== '' && backpage !== '') {
+			this.props.createFlashCardRequest({ frontpage, backpage });
+			this.setState({ isAddingMode: false });
+		}
 	};
 
 	renderFlashCard = ({ item }: { item: FlashCard }) => {
 		return (
 			<View style={styles.flashCardRow}>
 				<Text>{item.frontpage}</Text>
-				<Text>-</Text>
 				<Text>{item.backpage}</Text>
 			</View>
 		);
@@ -83,8 +95,16 @@ class HomeComponent extends Component<Props, State> {
 
 				{isAddingMode && (
 					<View style={styles.inputsContainer}>
-						<TextInput placeholder="front page" style={styles.textInput} />
-						<TextInput placeholder="back page" style={styles.textInput} />
+						<TextInput
+							placeholder="front page"
+							style={styles.textInput}
+							onChangeText={(text) => this.setState({ frontpage: text })}
+						/>
+						<TextInput
+							placeholder="back page"
+							style={styles.textInput}
+							onChangeText={(text) => this.setState({ backpage: text })}
+						/>
 						<Button onPress={this.handleNewFlashCard} title="Ok" />
 					</View>
 				)}

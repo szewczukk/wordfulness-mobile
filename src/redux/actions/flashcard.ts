@@ -4,6 +4,11 @@ export const getAllFlashCardsRequest = () => ({
 	type: actionTypes.getAllFlashCardsRequestType,
 });
 
+export const createFlashCardRequest = (payload: any) => ({
+	type: actionTypes.createFlashCardRequestType,
+	payload,
+});
+
 export const getAllFlashCardsSuccess = (payload: any) => ({
 	type: actionTypes.getAllFlashCardsSuccessType,
 	payload,

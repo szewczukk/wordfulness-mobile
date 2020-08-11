@@ -1,6 +1,7 @@
 export type FlashCard = {
-	frontPage: string;
-	backPage: string;
+	_id: string;
+	frontpage: string;
+	backpage: string;
 };
 
 export type AppState = {

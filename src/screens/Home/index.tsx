@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { Text, View, Button, TextInput, RefreshControl } from 'react-native';
+import {
+	Text,
+	View,
+	Button,
+	TextInput,
+	KeyboardAvoidingView,
+} from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
@@ -67,8 +73,8 @@ class HomeComponent extends Component<Props, State> {
 
 		if (frontpage !== '' && backpage !== '') {
 			this.props.createFlashCardRequest({ frontpage, backpage });
-			this.setState({ isAddingMode: false });
 		}
+		this.setState({ isAddingMode: false });
 	};
 
 	renderFlashCard = ({ item }: { item: FlashCard }) => {
@@ -85,7 +91,7 @@ class HomeComponent extends Component<Props, State> {
 		const { isAddingMode } = this.state;
 
 		return (
-			<View style={styles.container}>
+			<KeyboardAvoidingView behavior="height" style={styles.container}>
 				<FlatList
 					data={flashCards}
 					keyExtractor={(item) => item._id}
@@ -113,7 +119,7 @@ class HomeComponent extends Component<Props, State> {
 					<Button onPress={this.handleButtonPress} title={'Take me learn'} />
 					<Button onPress={this.handleAddingMode} title={'Add'} />
 				</View>
-			</View>
+			</KeyboardAvoidingView>
 		);
 	}
 }

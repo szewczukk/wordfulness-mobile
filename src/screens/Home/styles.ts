@@ -8,7 +8,7 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 	flashCardContainer: {
-		width: '50%',
+		maxWidth: '100%',
 	},
 	flashCardRow: {
 		width: '100%',
@@ -21,6 +21,8 @@ export default StyleSheet.create({
 	},
 	buttonsContainer: {
 		flexDirection: 'row',
+		width: '100%',
+		justifyContent: 'space-between',
 	},
 	textInput: {
 		width: '30%',

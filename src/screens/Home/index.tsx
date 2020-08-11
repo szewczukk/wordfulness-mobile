@@ -7,6 +7,7 @@ import {
 	Button,
 	TextInput,
 	KeyboardAvoidingView,
+	RefreshControl,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -43,6 +44,7 @@ type Props = NavigationProps &
 
 type State = {
 	isAddingMode: boolean;
+	refreshing: boolean;
 	frontpage: string;
 	backpage: string;
 };
@@ -50,6 +52,7 @@ type State = {
 class HomeComponent extends Component<Props, State> {
 	state = {
 		isAddingMode: false,
+		refreshing: false,
 		frontpage: '',
 		backpage: '',
 	};
@@ -97,6 +100,12 @@ class HomeComponent extends Component<Props, State> {
 					keyExtractor={(item) => item._id}
 					renderItem={this.renderFlashCard}
 					contentContainerStyle={styles.flashCardContainer}
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.refreshing}
+							onRefresh={() => this.props.getAllFlashCardsRequest()}
+						/>
+					}
 				/>
 
 				{isAddingMode && (

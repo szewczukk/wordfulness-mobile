@@ -7,9 +7,8 @@ export type FlashCard = {
 export type AppState = {
 	flashCards: {
 		flashCards: FlashCard[];
-		error: {
-			stringField: string;
-		};
+		getAllErrors: string;
+		createErrors: string;
 	};
 };
 

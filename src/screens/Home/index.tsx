@@ -76,6 +76,7 @@ class HomeComponent extends Component<Props, State> {
 
 		if (frontpage !== '' && backpage !== '') {
 			this.props.createFlashCardRequest({ frontpage, backpage });
+			this.setState({ frontpage: '', backpage: '' });
 		}
 		this.setState({ isAddingMode: false });
 	};

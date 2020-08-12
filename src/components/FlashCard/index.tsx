@@ -1,19 +1,32 @@
+import { connect } from 'react-redux';
 import React, { useState } from 'react';
+import { bindActionCreators, Dispatch } from 'redux';
 import { Text, TouchableOpacity, Button } from 'react-native';
 
 import styles from './styles';
 import { FlashCard } from '../../constans/types';
+import { deleteFlashCardRequest } from '../../redux/actions/flashcard';
 
-export default (props: FlashCard) => {
+const mapDispatchToProps = (dispatch: Dispatch) =>
+	bindActionCreators(
+		{
+			deleteFlashCardRequest,
+		},
+		dispatch,
+	);
+
+type Props = FlashCard & ReturnType<typeof mapDispatchToProps>;
+
+const FlashCardComponent = (props: Props) => {
 	const [clicked, setClicked] = useState(false);
-	const { frontpage, backpage } = props;
+	const { _id, frontpage, backpage } = props;
 
 	const handleContainerPress = () => {
 		setClicked(!clicked);
 	};
 
 	const handleButtonPress = () => {
-		console.log('Hello');
+		props.deleteFlashCardRequest(_id);
 	};
 
 	return (
@@ -24,3 +37,5 @@ export default (props: FlashCard) => {
 		</TouchableOpacity>
 	);
 };
+
+export default connect(null, mapDispatchToProps)(FlashCardComponent);

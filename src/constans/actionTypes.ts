@@ -1,5 +1,6 @@
 export const getAllFlashCardsRequestType = 'ALL_FLASHCARD_REQUEST';
 export const createFlashCardRequestType = 'CREATE_FLASHCARD_REQUEST';
+export const deleteFlashCardRequestType = 'DELETE_FLASHCARD_REQUEST';
 
 export const getAllFlashCardsSuccessType = 'ALL_FLASHCARD_SUCCESS';
 

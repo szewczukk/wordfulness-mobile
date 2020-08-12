@@ -9,6 +9,11 @@ export const createFlashCardRequest = (payload: any) => ({
 	payload,
 });
 
+export const deleteFlashCardRequest = (payload: any) => ({
+	type: actionTypes.deleteFlashCardRequestType,
+	payload,
+});
+
 export const getAllFlashCardsSuccess = (payload: any) => ({
 	type: actionTypes.getAllFlashCardsSuccessType,
 	payload,

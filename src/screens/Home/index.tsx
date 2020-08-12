@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import {
-	Text,
 	View,
 	Button,
 	TextInput,

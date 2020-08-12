@@ -44,6 +44,19 @@ function* fetchCreateFlashCard(action: Action) {
 	}
 }
 
+function* fetchDeleteFlashCard(action: Action) {
+	try {
+		const { payload } = action;
+		yield call(fetch, `http://192.168.1.13:3000/api/flashcard/${payload}`, {
+			method: 'DELETE',
+		});
+
+		yield call(fetchGetAllFlashCards);
+	} catch (e) {
+		console.error(e); // tslint:disable-line
+	}
+}
+
 export function* getAllFlashCards() {
 	yield takeLatest(
 		actionTypes.getAllFlashCardsRequestType,
@@ -53,4 +66,8 @@ export function* getAllFlashCards() {
 
 export function* createFlashCard() {
 	yield takeEvery(actionTypes.createFlashCardRequestType, fetchCreateFlashCard);
+}
+
+export function* deleteFlashCard() {
+	yield takeEvery(actionTypes.deleteFlashCardRequestType, fetchDeleteFlashCard);
 }

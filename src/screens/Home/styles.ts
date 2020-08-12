@@ -10,12 +10,6 @@ export default StyleSheet.create({
 	flashCardContainer: {
 		maxWidth: '100%',
 	},
-	flashCardRow: {
-		width: '100%',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-	},
 	inputsContainer: {
 		flexDirection: 'row',
 	},

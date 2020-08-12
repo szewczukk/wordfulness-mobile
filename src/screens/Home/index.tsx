@@ -12,7 +12,8 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
-import { AppState, FlashCard } from '../../constans/types';
+import FlashCard from '../../components/FlashCard';
+import { AppState } from '../../constans/types';
 import * as routes from '../../constans/routes';
 import {
 	getAllFlashCardsRequest,
@@ -80,15 +81,6 @@ class HomeComponent extends Component<Props, State> {
 		this.setState({ isAddingMode: false });
 	};
 
-	renderFlashCard = ({ item }: { item: FlashCard }) => {
-		return (
-			<View style={styles.flashCardRow}>
-				<Text>{item.frontpage}</Text>
-				<Text>{item.backpage}</Text>
-			</View>
-		);
-	};
-
 	render() {
 		const { flashCards } = this.props;
 		const { isAddingMode } = this.state;
@@ -98,7 +90,7 @@ class HomeComponent extends Component<Props, State> {
 				<FlatList
 					data={flashCards}
 					keyExtractor={(item) => item._id}
-					renderItem={this.renderFlashCard}
+					renderItem={({ item }) => <FlashCard {...item} />}
 					contentContainerStyle={styles.flashCardContainer}
 					refreshControl={
 						<RefreshControl

@@ -5,12 +5,14 @@ type State = {
 	flashCards: FlashCard[];
 	getAllErrors: string;
 	createErrors: string;
+	deleteErrors: string;
 };
 
 const initialState: State = {
 	flashCards: [],
 	getAllErrors: '',
 	createErrors: '',
+	deleteErrors: '',
 };
 
 const reducer = (state = initialState, action: Action) => {
@@ -23,6 +25,8 @@ const reducer = (state = initialState, action: Action) => {
 			return { ...state, getAllErrors: payload };
 		case actionTypes.createFlashCardErrorType:
 			return { ...state, createErrors: payload };
+		case actionTypes.deleteFlashCardErrorType:
+			return { ...state, deleteErrors: payload };
 		default:
 			return state;
 	}

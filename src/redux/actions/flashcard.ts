@@ -28,3 +28,8 @@ export const createFlashCardsError = (payload: any) => ({
 	type: actionTypes.createFlashCardErrorType,
 	payload,
 });
+
+export const deleteFlashCardError = (payload: any) => ({
+	type: actionTypes.deleteFlashCardErrorType,
+	payload,
+});

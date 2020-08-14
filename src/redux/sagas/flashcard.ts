@@ -47,7 +47,7 @@ function* fetchDeleteFlashCard(action: Action) {
 
 		yield call(fetchGetAllFlashCards);
 	} catch (e) {
-		console.error(e); // tslint:disable-line
+		yield put(actions.deleteFlashCardError(JSON.stringify(e)));
 	}
 }
 

@@ -7,6 +7,7 @@ export const getAllFlashCardsSuccessType = 'ALL_FLASHCARD_SUCCESS';
 
 export const getAllFlashCardsErrorType = 'ALL_FLASHCARD_ERROR';
 export const createFlashCardErrorType = 'CREATE_FLASHCARD_ERROR';
+export const deleteFlashCardErrorType = 'DELETE_FLASHCARD_ERROR';
 
 // Flashcard learning
 export const initLearningType = 'INIT_LEARNING';

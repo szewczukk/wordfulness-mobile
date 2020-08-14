@@ -6,5 +6,6 @@ export default StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		flexWrap: 'wrap',
 	},
 });

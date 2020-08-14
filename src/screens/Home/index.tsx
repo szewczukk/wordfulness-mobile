@@ -17,6 +17,7 @@ import * as actions from '../../redux/actions/flashcard';
 import { StoreType } from '../../redux';
 import { StackParamsList } from '../../navigation/AppNavigation';
 import { FlatList } from 'react-native-gesture-handler';
+import { FlashCard as FlashCardType } from '../../constans/types';
 
 type NavigationProps = {
 	navigation: StackNavigationProp<StackParamsList>;
@@ -94,7 +95,7 @@ class HomeComponent extends Component<Props, State> {
 			>
 				<FlatList
 					data={flashCards}
-					keyExtractor={(item) => item._id}
+					keyExtractor={(item: FlashCardType) => item._id}
 					renderItem={({ item }) => <FlashCard {...item} />}
 					contentContainerStyle={styles.flashCardContainer}
 					refreshControl={

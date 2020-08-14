@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators, Dispatch, Store } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import {
 	View,
@@ -7,6 +7,7 @@ import {
 	TextInput,
 	KeyboardAvoidingView,
 	RefreshControl,
+	Platform,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -90,7 +91,7 @@ class HomeComponent extends Component<Props, State> {
 		return (
 			<KeyboardAvoidingView
 				behavior="padding"
-				keyboardVerticalOffset={40}
+				keyboardVerticalOffset={Platform.select({ ios: 40 })}
 				style={styles.container}
 			>
 				<FlatList

@@ -13,10 +13,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import styles from './styles';
 import FlashCard from '../../components/FlashCard';
 import * as routes from '../../constans/routes';
-import {
-	getAllFlashCardsRequest,
-	createFlashCardRequest,
-} from '../../redux/actions/flashcard';
+import * as actions from '../../redux/actions/flashcard';
 import { StoreType } from '../../redux';
 import { StackParamsList } from '../../navigation/AppNavigation';
 import { FlatList } from 'react-native-gesture-handler';
@@ -32,8 +29,8 @@ const mapStateToProps = (state: StoreType) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
 	bindActionCreators(
 		{
-			getAllFlashCardsRequest,
-			createFlashCardRequest,
+			getAllFlashCardsRequest: actions.getAllFlashCardsRequest,
+			createFlashCardRequest: actions.createFlashCardRequest,
 		},
 		dispatch,
 	);
@@ -58,7 +55,11 @@ class HomeComponent extends Component<Props, State> {
 	};
 
 	componentDidMount() {
-		this.props.getAllFlashCardsRequest();
+		const { navigation, getAllFlashCardsRequest } = this.props;
+
+		navigation.addListener('focus', () => {
+			getAllFlashCardsRequest();
+		});
 	}
 
 	handleButtonPress = () => {
@@ -86,7 +87,11 @@ class HomeComponent extends Component<Props, State> {
 		const { isAddingMode } = this.state;
 
 		return (
-			<KeyboardAvoidingView behavior="height" style={styles.container}>
+			<KeyboardAvoidingView
+				behavior="padding"
+				keyboardVerticalOffset={40}
+				style={styles.container}
+			>
 				<FlatList
 					data={flashCards}
 					keyExtractor={(item) => item._id}

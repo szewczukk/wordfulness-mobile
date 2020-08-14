@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bindActionCreators, Dispatch } from 'redux';
+import { bindActionCreators, Dispatch, Store } from 'redux';
 import { connect } from 'react-redux';
 import {
 	View,
@@ -12,12 +12,12 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import styles from './styles';
 import FlashCard from '../../components/FlashCard';
-import { AppState } from '../../constans/types';
 import * as routes from '../../constans/routes';
 import {
 	getAllFlashCardsRequest,
 	createFlashCardRequest,
 } from '../../redux/actions/flashcard';
+import { StoreType } from '../../redux';
 import { StackParamsList } from '../../navigation/AppNavigation';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -25,7 +25,7 @@ type NavigationProps = {
 	navigation: StackNavigationProp<StackParamsList>;
 };
 
-const mapStateToProps = (state: AppState) => ({
+const mapStateToProps = (state: StoreType) => ({
 	flashCards: state.flashCards.flashCards,
 });
 

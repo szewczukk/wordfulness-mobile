@@ -1,15 +1,13 @@
 import { takeLatest, put, call, takeEvery } from 'redux-saga/effects';
 
 import { Action } from '../../constans/types';
+import { API_BASE } from '../../constans/api';
 import * as actions from '../actions/flashcard';
 import * as actionTypes from '../../constans/actionTypes';
 
 function* fetchGetAllFlashCards() {
 	try {
-		const response = yield call(
-			fetch,
-			'http://192.168.1.13:3000/api/flashcard',
-		);
+		const response = yield call(fetch, `${API_BASE}/api/flashcard`);
 
 		const result = yield response.json();
 
@@ -21,18 +19,14 @@ function* fetchGetAllFlashCards() {
 
 function* fetchCreateFlashCard(action: Action) {
 	try {
-		const response = yield call(
-			fetch,
-			'http://192.168.1.13:3000/api/flashcard',
-			{
-				method: 'POST',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(action.payload),
+		const response = yield call(fetch, `${API_BASE}/api/flashcard`, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
 			},
-		);
+			body: JSON.stringify(action.payload),
+		});
 
 		const result = yield response.json();
 
@@ -47,7 +41,7 @@ function* fetchCreateFlashCard(action: Action) {
 function* fetchDeleteFlashCard(action: Action) {
 	try {
 		const { payload } = action;
-		yield call(fetch, `http://192.168.1.13:3000/api/flashcard/${payload}`, {
+		yield call(fetch, `${API_BASE}/api/flashcard/${payload}`, {
 			method: 'DELETE',
 		});
 

@@ -13,9 +13,7 @@ export type StackParamsList = {
 const Stack = createStackNavigator<StackParamsList>();
 
 export default () => (
-	<Stack.Navigator
-		screenOptions={{ headerShown: false, gestureEnabled: false }}
-	>
+	<Stack.Navigator screenOptions={{ headerShown: false }}>
 		<Stack.Screen name={routes.HOME} component={Home} />
 		<Stack.Screen name={routes.LEARN} component={Learn} />
 	</Stack.Navigator>

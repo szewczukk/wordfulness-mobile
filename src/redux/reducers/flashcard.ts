@@ -1,5 +1,5 @@
 import * as actionTypes from '../../constans/actionTypes';
-import { Action } from '../../constans/types';
+import { Action, FlashCard } from '../../constans/types';
 
 const initialState = {
 	flashCards: [],
@@ -7,7 +7,13 @@ const initialState = {
 	createErrors: '',
 };
 
-const reducer = (state = initialState, action: Action) => {
+type State = {
+	flashCards: FlashCard[];
+	getAllErrors: string;
+	createErrors: string;
+};
+
+const reducer = (state: State = initialState, action: Action): State => {
 	const { type, payload } = action;
 
 	switch (type) {

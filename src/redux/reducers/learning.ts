@@ -19,22 +19,28 @@ const reducer = (state = initialState, action: Action) => {
 
 	switch (type) {
 		case actionTypes.initLearningType:
+			const flashCards = [...payload];
+
 			for (let i = payload.length - 1; i > 0; i--) {
 				const j = Math.floor(Math.random() * (i + 1));
-				[payload[i], payload[j]] = [payload[j], payload[i]];
+				[flashCards[i], flashCards[j]] = [flashCards[j], flashCards[i]];
 			}
 
-			const current = payload.shift();
+			const current = flashCards.shift();
 
-			return { queue: payload, currentFlashCard: current, finished: false };
+			return {
+				queue: flashCards,
+				currentFlashCard: current,
+				finished: false,
+			};
 		case actionTypes.answerType:
 			const { answer, id } = payload;
 
 			if (answer === Answer.OK) {
 				const { queue } = state;
 
-				const newQueue = state.queue.filter((val) => val._id !== id);
-				const newFlashCard = queue.shift();
+				const newQueue = queue.filter((val) => val._id !== id);
+				const newFlashCard = newQueue.shift();
 				const finished = typeof newFlashCard === 'undefined';
 
 				return {

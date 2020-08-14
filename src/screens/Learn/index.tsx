@@ -8,7 +8,7 @@ import styles from './styles';
 import * as routes from '../../constans/routes';
 import { Answer } from '../../constans/enums';
 import { StoreType } from '../../redux';
-import { answer, initLearning } from '../../redux/actions/learning';
+import * as actions from '../../redux/actions/learning';
 import { StackParamsList } from '../../navigation/AppNavigation';
 
 type NavigationProps = {
@@ -25,8 +25,8 @@ const mapStateToProps = (state: StoreType) => ({
 const mapDispatchToProps = (dispatch: Dispatch) =>
 	bindActionCreators(
 		{
-			initLearning,
-			answer,
+			initLearning: actions.initLearning,
+			answer: actions.answer,
 		},
 		dispatch,
 	);
@@ -37,8 +37,10 @@ type Props = NavigationProps &
 
 class LearnScreen extends Component<Props> {
 	componentDidMount() {
-		this.props.navigation.addListener('focus', () => {
-			this.props.initLearning(this.props.allFlashCards);
+		const { navigation, allFlashCards, initLearning } = this.props;
+
+		navigation.addListener('focus', () => {
+			initLearning(allFlashCards);
 		});
 	}
 
@@ -47,17 +49,20 @@ class LearnScreen extends Component<Props> {
 	};
 
 	handleAnswerButtons = (ans: Answer) => {
-		this.props.answer({ id: this.props.currentFlashCard?._id, answer: ans });
+		const { currentFlashCard, answer } = this.props;
+
+		answer({ id: currentFlashCard?._id, answer: ans });
 	};
 
 	render() {
+		const { finished, currentFlashCard } = this.props;
+
 		return (
 			<View style={styles.container}>
-				{!this.props.finished ? (
+				{!finished ? (
 					<>
 						<Text>
-							{this.props.currentFlashCard?.frontpage} -{' '}
-							{this.props.currentFlashCard?.backpage}
+							{currentFlashCard?.frontpage} - {currentFlashCard?.backpage}
 						</Text>
 
 						<Button

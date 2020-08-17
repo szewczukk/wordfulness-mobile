@@ -7,7 +7,7 @@ import * as actionTypes from '../../constans/actionTypes';
 
 function* fetchGetAllFlashCards() {
 	try {
-		const response = yield call(fetch, `${API_BASE}/api/flashcard`);
+		const response = yield call(fetch, `${API_BASE}/flashcard`);
 
 		const result = yield response.json();
 
@@ -19,7 +19,7 @@ function* fetchGetAllFlashCards() {
 
 function* fetchCreateFlashCard(action: Action) {
 	try {
-		const response = yield call(fetch, `${API_BASE}/api/flashcard`, {
+		const response = yield call(fetch, `${API_BASE}/flashcard`, {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -41,7 +41,7 @@ function* fetchCreateFlashCard(action: Action) {
 function* fetchDeleteFlashCard(action: Action) {
 	try {
 		const { payload } = action;
-		yield call(fetch, `${API_BASE}/api/flashcard/${payload}`, {
+		yield call(fetch, `${API_BASE}/flashcard/${payload}`, {
 			method: 'DELETE',
 		});
 
